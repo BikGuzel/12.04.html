@@ -1,0 +1,16 @@
+<input id="first" data-parsley-maxlength="42" value="hello"/>
+<input id="second" value="world"/>
+[...]
+<script>
+var instance = $('#first').parsley();
+console.log(instance.isValid()); // maxlength is 42, so field is valid
+$('#first').attr('data-parsley-maxlength', 4);
+console.log(instance.isValid()); // No longer valid, as maxlength is 4
+// You can access and override options in javascript too:
+instance.options.maxlength++;
+console.log(instance.isValid()); // Back to being valid, as maxlength is 5
+// Alternatively, the options can be specified as:
+var otherInstance = $('#second').parsley({
+  maxlength: 10
+});
+console.log(otherInstance.options); // Shows that maxlength will be 10 for this field
